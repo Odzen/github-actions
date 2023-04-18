@@ -8,10 +8,15 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
 
+// Import the routes
+var routes = require('./routes/api'); 
+
+app.use('/api', routes);
+
+// Load the routes
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
+
+module.exports = app;
