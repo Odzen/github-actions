@@ -14,6 +14,7 @@ router.get('/pokemons', async (req, res) => {
 router.get('/pokemons/bulbasaur', async (req, res) => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon/1')
     const jsonData = await response.json();
+    console.log("change");
     res.send(jsonData);
 });
 
