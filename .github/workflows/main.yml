@@ -3,7 +3,12 @@ name: Test Node.js App
 on:
   push:
     branches:
-      - docker-hub
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
 
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
