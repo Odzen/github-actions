@@ -3,7 +3,7 @@ name: Test Node.js App
 on:
   push:
     branches:
-      - docker-hub
+      - docker-push
 
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -27,3 +27,17 @@ jobs:
 
     - name: Run tests
       run: npm test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build
+      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ github.sha }}
+
+    - name: Push
+      run: docker push $DOCKER_USER/$REPO_NAME
