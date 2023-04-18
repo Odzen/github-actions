@@ -37,7 +37,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build
-      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ github.sha | slice(0, 5) }}
 
     - name: Push
-      run: docker push $DOCKER_USER/$REPO_NAME:${{ github.sha }}
+      run: docker push $DOCKER_USER/$REPO_NAME:${{ github.sha | slice(0, 5) }}
