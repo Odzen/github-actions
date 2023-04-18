@@ -3,7 +3,7 @@ name: Test Node.js App
 on:
   push:
     branches:
-      - docker-push
+      - main
 
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
