@@ -9,8 +9,7 @@ on:
       - main
     types:
       - closed
-
-
+      
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
